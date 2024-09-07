@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Contract</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        div {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #eee;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        #displayName, #displayEmail, #displayMessage {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bank Contract</h1>
+
+    <!-- Form to set name, email, and message -->
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name"><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email"><br>
+
+        <label for="message">Message:</label>
+        <input type="text" id="message"><br>
+
+        <button onclick="setDetails()">Set Details</button>
+    </div>
+
+    <hr>
+
+    <!-- Buttons to get name, email, and message -->
+    <div>
+        <button onclick="getName()">Get Name</button>
+        <p id="displayName"></p>
+
+        <button onclick="getEmail()">Get Email</button>
+        <p id="displayEmail"></p>
+
+        <button onclick="getMessage()">Get Message</button>
+        <p id="displayMessage"></p>
+    </div>
+
+    <script>
+        // Define Web3 and the smart contract
+        let web3;
+        let contract;
+
+        // The ABI of the contract
+        const abi = [
+            {
+                "inputs": [],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "inputs": [],
+                "name": "getEmail",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "getMessage",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "getName",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_email",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_message",
+                        "type": "string"
+                    }
+                ],
+                "name": "set",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ];
+
+        // Contract address
+        const contractAddress = "0x4388Ecc10b5ECD14f1C95Af02780BC46540f9E27";
+
+        // Initialize Web3
+        window.addEventListener('load', async () => {
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+                try {
+                    // Request account access
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const accounts = await web3.eth.getAccounts();
+
+                    // Set the contract instance
+                    contract = new web3.eth.Contract(abi, contractAddress, {
+                        from: accounts[0] // default account
+                    });
+
+                    console.log('Web3 initialized');
+                } catch (error) {
+                    console.error("User denied account access", error);
+                }
+            } else {
+                alert('Please install MetaMask!');
+            }
+        });
+
+        // Function to set the details (name, email, message)
+        async function setDetails() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            try {
+                await contract.methods.set(name, email, message).send();
+                alert("Details set successfully!");
+            } catch (error) {
+                console.error(error);
+                alert("Failed to set details.");
+            }
+        }
+
+        // Function to get the name
+        async function getName() {
+            try {
+                const name = await contract.methods.getName().call();
+                document.getElementById("displayName").innerText = "Name: " + name;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Function to get the email
+        async function getEmail() {
+            try {
+                const email = await contract.methods.getEmail().call();
+                document.getElementById("displayEmail").innerText = "Email: " + email;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Function to get the message
+        async function getMessage() {
+            try {
+                const message = await contract.methods.getMessage().call();
+                document.getElementById("displayMessage").innerText = "Message: " + message;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

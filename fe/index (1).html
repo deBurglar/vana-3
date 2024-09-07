@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NéerVana</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <!-- Header -->
+    <header>
+        <div class="logo" id="logo">NeerVana</div>
+        <nav>
+            <ul>
+                <li><a href="#" id="nav-home">Home</a></li> <!-- Modified -->
+                <li><a href="#features" id="nav-features">Features</a></li>
+                <li><a href="#contact" id="nav-contact">Contact</a></li>
+                <li><a href="#about" id="nav-about">About</a></li>
+                <li class="dropdown">
+                    <a href="#" id="nav-languages">Languages</a>
+                    <ul class="dropdown-content" id="language-dropdown">
+                        <li><a href="#" id="lang-en">English</a></li>
+                        <li><a href="#" id="lang-hi">Hindi</a></li>
+                        <li><a href="#" id="lang-bn">Bangla</a></li>
+                        <li><a href="#" id="lang-ta">Tamil</a></li>
+                        <li><a href="#" id="lang-mr">Marathi</a></li>
+                    </ul>
+                
+                    
+                </li>
+            </ul>
+            <button class="mobile-menu-button">&#9776;</button>
+        </nav>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#home" id="mobile-nav-home">Home</a></li>
+                <li><a href="#features" id="mobi55e-nav-features">Features</a></li>
+                <li><a href="#contact" id="mobile-nav-contact">Contact</a></li>
+                <li><a href="#about" id="mobile-nav-about">About</a></li>
+                <li class="dropdown">
+                    <a href="#" id="mobile-nav-languages">Languages</a>
+                    <ul class="dropdown-content" id="mobile-language-dropdown">
+                        <li><a href="#" id="mobile-lang-en">English</a></li>
+                        <li><a href="#" id="mobile-lang-hi">Hindi</a></li>
+                        <li><a href="#" id="mobile-lang-bn">Bangla</a></li>
+                        <li><a href="#" id="mobile-lang-ta">Tamil</a></li>
+                        <li><a href="#" id="mobile-lang-mr">Marathi</a></li>
+                    </ul>
+                
+                    
+                </li>
+            </ul>
+        </div>
+    </header>
+    
+
+    <!-- Main Banner -->
+    <section class="banner">
+        
+        <div class="banner-content">
+            <h1 class="drop-in">
+                <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span>
+                <span> </span><span>t</span><span>o</span>
+                <span> </span><span>N</span><span>e</span><span>e</span><span>r</span><span>V</span><span>a</span><span>n</span><span>a</span>
+            </h1>
+    
+            <p>Track and optimize your water usage effortlessly with our innovative app.</p>
+            <br>
+            <button id="prod">ANALYZE THE PRODUCT</button>
+
+            <!-- New Bihar Button -->
+            <br><br>
+            <button id="bihar-btn">BIHAR</button>
+
+             <!-- Dropdown for Bihar Districts -->
+        <div class="dropdown" id="bihar-districts-dropdown" style="display: none;">
+            <label for="districts">Select a district</label>
+            <select id="districts">
+                <option value="araria">Araria</option>
+                <option value="arwal">Arwal</option>
+                <option value="aurangabad">Aurangabad</option>
+                <option value="banka">Banka</option>
+                <option value="begusarai">Begusarai</option>
+                <option value="bhagalpur">Bhagalpur</option>
+                <option value="bhojpur">Bhojpur</option>
+                <option value="buxar">Buxar</option>
+                <option value="darbhanga">Darbhanga</option>
+                <option value="east-champaran">East Champaran</option>
+                <option value="gaya">Gaya</option>
+                <option value="gopalganj">Gopalganj</option>
+                <option value="jamui">Jamui</option>
+                <option value="jehanabad">Jehanabad</option>
+                <option value="kaimur">Kaimur</option>
+                <option value="katihar">Katihar</option>
+                <option value="khagaria">Khagaria</option>
+                <option value="kishanganj">Kishanganj</option>
+                <option value="lakhisarai">Lakhisarai</option>
+                <option value="madhepura">Madhepura</option>
+                <option value="madhubani">Madhubani</option>
+                <option value="munger">Munger</option>
+                <option value="muzaffarpur">Muzaffarpur</option>
+                <option value="nalanda">Nalanda</option>
+                <option value="nawada">Nawada</option>
+                <option value="patna">Patna</option>
+                <option value="purnia">Purnia</option>
+                <option value="rohtas">Rohtas</option>
+                <option value="saharsa">Saharsa</option>
+                <option value="samastipur">Samastipur</option>
+                <option value="saran">Saran</option>
+                <option value="sheikhpura">Sheikhpura</option>
+                <option value="sheohar">Sheohar</option>
+                <option value="sitamarhi">Sitamarhi</option>
+                <option value="siwan">Siwan</option>
+                <option value="supaul">Supaul</option>
+                <option value="vaishali">Vaishali</option>
+                <option value="west-champaran">West Champaran</option>
+            </select>
+        </div>
+            
+        </div>
+        <!-- Pop-up for Product Input -->
+<div id="product-popup">
+    <div class="popup-content">
+        <button class="close-btn">&times;</button>
+        <h2>Product Input</h2>
+
+        <label for="product-type">Select type of product</label>
+        <div class="dropdown">
+            <select id="product-type">
+                <option value="" disabled selected>Select a product category</option>
+                <option value="fruits">Fruits</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="pulses">Pulses</option>
+                <option value="oil-crops">Oil Crops</option>
+                <option value="cereals">Cereals</option>
+                <option value="stimulants">Stimulants</option>
+                <option value="spices">Spices</option>
+                <option value="fibres">Fibres</option>
+                <option value="fodder-crops">Fodder Crops</option>
+                <option value="nuts">Nuts</option>
+                <option value="roots">Roots</option>
+                <option value="sugar-crops">Sugar Crops</option>
+                <option value="others">Others</option>
+            </select>
+        </div>
+        <br><br>
+
+        <!-- Second dropdown for specific products -->
+        <label for="specific-product">Select specific product</label>
+        <div class="dropdown">
+            <select id="specific-product" disabled>
+                <option value="" disabled selected>Select a specific product</option>
+            </select>
+        </div>
+        <br><br>
+
+       <!-- <input type="text" id="product-name" placeholder="Enter product name">-->
+        <span class="microphone-icon">&#127908;</span> <!-- Microphone Icon -->
+        <span class="google-lens-icon">&#128248;</span> <!-- Google Lens Icon -->
+        <br><br>
+
+        <!-- Input weight in kilos -->
+        <label for="product-weight">Enter weight in kgs</label>
+        <input type="number" id="product-weight" placeholder="Enter weight in kgs" min="0">
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </div>
+</div>
+
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <h2>Features</h2>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <a href="smart-recommendations.html" class="card-link">
+                <h3>Smart Recommendations</h3>
+                <p>Get personalized recommendations based on your usage patterns.</p>
+                </a>
+            </div>
+            <div class="feature-card">
+                
+                <h3>Real-Time Data</h3>
+                <p>Access real-time data to make informed decisions.</p>
+            </div>
+            <div class="feature-card">
+                
+                <h3>Localized Insights</h3>
+                <p>Understand your water footprint with local language support.</p>
+            </div>
+            <div class="feature-card">
+                <a href="weekly-usage.html" class="card-link">
+                <h3>Weekly Usage</h3>
+                <p>Analyze your weekly water footprint usage.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+            <button type="button" id="mic-btn" class="mic-btn">🎤</button>
+        </form>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>HydroHackers is dedicated to improving water usage efficiency. Our app leverages advanced technologies to provide insights and recommendations to help you make sustainable choices.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 HydroHackers. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
